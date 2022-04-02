@@ -253,24 +253,25 @@ class NDRSet:
         self.action = action
         self.ndrs = list(ndrs)
         self._allow_redundant_variables = allow_redundant_variables
-        if default_ndr is None:
-            self.default_ndr = self._create_default_ndr(action,
-                allow_redundant_variables=allow_redundant_variables)
-        else:
-            self.default_ndr = default_ndr
+        # if default_ndr is None:
+        #     self.default_ndr = self._create_default_ndr(action,
+        #         allow_redundant_variables=allow_redundant_variables)
+        # else:
+        #     self.default_ndr = default_ndr
 
         # Cannot have empty preconds
         for ndr in ndrs:
             assert len(ndr.preconditions) > 0
             assert ndr.action == action
-        assert self.default_ndr.action == action
+        # assert self.default_ndr.action == action
 
     def __str__(self):
         s = "\n".join([str(r) for r in self])
         return s
 
     def __iter__(self):
-        return iter(self.ndrs + [self.default_ndr])
+        # return iter(self.ndrs + [self.default_ndr])
+        return iter(self.ndrs)
 
     def __len__(self):
         return len(self.ndrs) + 1
